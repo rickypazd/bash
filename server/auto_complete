@@ -1,0 +1,17 @@
+#!/bin/bash
+
+_mi_script_completado() {
+    local current_word previous_word type_list
+
+    # Comando compgen es usado para generar las coincidencias posibles
+    # -W especifica una lista de posibles coincidencias para completar
+    # $current_word es la palabra que el usuario está escribiendo
+
+    current_word="${COMP_WORDS[COMP_CWORD]}"
+
+    COMPREPLY=( $(compgen -W "--start --stop --restart" -- "$current_word") )
+}
+
+# Asociar nuestra función de completado con nuestro comando
+complete -F _mi_script_completado backup
+
